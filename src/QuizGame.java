@@ -35,7 +35,12 @@ public class QuizGame {
                 System.out.println("Incorrect, please try again.");
             }
 
-            System.out.println("Final Score: " + score);
+
+            System.out.println("\n----------------------------------");
+            System.out.println("Quiz Completed!");
+            System.out.println("Name: " + name);
+            System.out.println("Score: " + score + " out of " + questions.length);
+
         }
     }
 }
