@@ -1,43 +1,46 @@
 public class Question {
     private String title;
-    private int option1;
-    private int option2;
-    private int option3;
-    private int option4;
-    private int correctAnswer;
+    private int[] options = new int[4];
+    private int correct_index;
 
-    public Question(String title, int option1, int option2, int option3, int option4, int correctAnswer) {
+    public Question(String title, int option_1, int option_2, int option_3, int option_4, int correct_index)
+    {
         this.title = title;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
-        this.correctAnswer = correctAnswer;
+        this.options[0] = option_1;
+        this.options[1] = option_2;
+        this.options[2] = option_3;
+        this.options[3]= option_4;
+        this.correct_index = correct_index;
     }
+
     public String getTitle() {
         return title;
     }
-    public int getOption1() {
-        return option1;
-    }
-    public int getOption2() {
-        return option2;
-    }
-    public int getOption3() {
-        return option3;
-    }
-    public int getOption4() {
-        return option4;
-    }
-    public int getCorrectAnswer() {
-        return correctAnswer;
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public boolean checkAnswer(int answer) {
-        if (answer == this.correctAnswer){
-            return true;
-        } else {
-            return false;
+
+    public int getCorrect_index() {
+        return correct_index;
+    }
+
+    public void setCorrect_index(int correct_index) {
+        this.correct_index = correct_index;
+    }
+
+    public void showOptions(){
+        for(int i = 0; i < this.options.length; i++){
+            System.out.println(i+1 + " . "+ options[i]);
         }
+    }
+
+
+    public boolean checkAnswer(int answer){
+        if((answer) == this.correct_index){
+            return true;
+        }
+        return false;
     }
 }
