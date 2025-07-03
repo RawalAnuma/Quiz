@@ -5,19 +5,25 @@ import java.util.Scanner;
 public class QuizGame {
     public static void main(String[] args) {
         //how do i let users to select options instead of giving the answers directly?
-        //TODO contructor ma index chaine vanda dherai rakhda ko problem milauna xha
+        //TODO constructor ma index chaine vanda dherai rakhda ko problem milauna xha
         int score = 0;
         boolean is_running = true;
+
         String player_name = "";//khelne player ko nam rakhne ho
         Question question_1 = new Question("When did i pass out?", 2017,2018,2020,2021,4);
         Question question_2 = new Question("What is my birth year?", 2007,2000,2010,1997,2);
+
         ArrayList<Question> quiz_questions = new ArrayList<>();
+
         quiz_questions.add(question_1);
         quiz_questions.add(question_2);
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you ready for the quizzz!!");
         System.out.println("Enter your name: ");
+
         player_name = scan.nextLine();
+
         while(is_running){
             //how do we control while loop?
             for(Question question: quiz_questions){
