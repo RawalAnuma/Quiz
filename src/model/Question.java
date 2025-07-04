@@ -1,3 +1,5 @@
+package model;
+
 public class Question {
     private String title;
     private int[] options = new int[4];
