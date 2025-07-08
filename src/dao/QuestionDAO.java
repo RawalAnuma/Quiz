@@ -1,9 +1,9 @@
 package dao;
 
 import model.Question;
-import model.User;
-
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class QuestionDAO {
         try {
             if (conn != null) {
                 String query = "INSERT INTO question (title, option_1, option_2, option_3, option_4, correct_index) VALUES (?, ?, ?, ?, ?, ?)";
-                var ps = conn.prepareStatement(query);
+                PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, question.getTitle());
                 ps.setInt(2, question.getOptions()[0]);
                 ps.setInt(3, question.getOptions()[1]);
@@ -33,6 +33,28 @@ public class QuestionDAO {
             throw new RuntimeException(e);
         }
         return isInserted;
+    }
+
+    public ArrayList<Question> getAllQuestions() {
+        ArrayList<Question> questions = new ArrayList<>();
+        String query = "SELECT * FROM question";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet questionSet = ps.executeQuery();
+            while (questionSet.next()) {
+                String title = questionSet.getString("title");
+                int option1 = questionSet.getInt("option_1");
+                int option2 = questionSet.getInt("option_2");
+                int option3 = questionSet.getInt("option_3");
+                int option4 = questionSet.getInt("option_4");
+                int correctIndex = questionSet.getInt("correct_index");
+                Question question = new Question(title, option1, option2, option3, option4, correctIndex);
+                questions.add(question);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return questions;
     }
 
 }
