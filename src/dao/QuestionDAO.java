@@ -16,7 +16,7 @@ public class QuestionDAO {
         boolean isInserted = false;
         try {
             if (conn != null) {
-                String query = "INSERT INTO question (title, option_1, option_2, option_3, option_4, correct_index) VALUES (?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO questions (title, option1, option2, option3, option4, correctOption ) VALUES (?, ?, ?, ?, ?, ?)";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, question.getTitle());
                 ps.setInt(2, question.getOptions()[0]);
@@ -37,24 +37,24 @@ public class QuestionDAO {
 
     public ArrayList<Question> getAllQuestions() {
         ArrayList<Question> questions = new ArrayList<>();
-        String query = "SELECT * FROM question";
+        String query = "SELECT title, option1, option2, option3, option4, correctOption FROM questions";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet questionSet = ps.executeQuery();
             while (questionSet.next()) {
                 String title = questionSet.getString("title");
-                int option1 = questionSet.getInt("option_1");
-                int option2 = questionSet.getInt("option_2");
-                int option3 = questionSet.getInt("option_3");
-                int option4 = questionSet.getInt("option_4");
-                int correctIndex = questionSet.getInt("correct_index");
-                Question question = new Question(title, option1, option2, option3, option4, correctIndex);
+                int option1 = questionSet.getInt("option1");
+                int option2 = questionSet.getInt("option2");
+                int option3 = questionSet.getInt("option3");
+                int option4 = questionSet.getInt("option4");
+                int correctOption = questionSet.getInt("correctOption");
+                Question question = new Question(title, option1, option2, option3, option4, correctOption);
                 questions.add(question);
             }
+            return questions;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return questions;
     }
 
 }

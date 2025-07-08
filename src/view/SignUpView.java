@@ -17,5 +17,6 @@ public class SignUpView {
         } else {
             System.out.println("Sign up failed. Please try again.");
         }
+        GameMenu.showMenu();
     }
 }

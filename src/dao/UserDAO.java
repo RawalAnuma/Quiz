@@ -33,7 +33,7 @@ public class UserDAO {
 
     public User checkUser(String username, String password) {
         User user = new User();
-        String query = "Select username, password, isGameMaster from user where username = ? and password = ?";
+        String query = "Select username, password, isgamemaster from user where username = ? and password = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1,username);

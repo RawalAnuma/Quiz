@@ -2,6 +2,7 @@ package view;
 
 import controller.UserController;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LoginView {
@@ -12,11 +13,18 @@ public class LoginView {
         String username = scan.nextLine();
         System.out.println("Enter password: ");
         String password = scan.nextLine();
-        if(userController.logIn(username, password)){
-            System.out.println("Login successful!");
-        } else {
-            System.out.println("Login failed. Please try again.");
+        try {
+            if(userController.logIn(username, password)){
+                System.out.println("Login successful!");
+            } else {
+                System.out.println("Login failed. Please try again.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
+        GameMenu.showMenu();
 
     }
 }

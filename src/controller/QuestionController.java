@@ -17,7 +17,7 @@ public class QuestionController {
         return questionDAO.insertQuestion(question);
     }
 
-    public ArrayList<Question> getQuestions(){
+    public ArrayList<Question> getAllQuestions(){
         return questionDAO.getAllQuestions();
     }
 }

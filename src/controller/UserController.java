@@ -30,11 +30,11 @@ public class UserController {
             return false;
         }
     }
-    public boolean logIn(String username, String password) {
+    public boolean logIn(String username, String password) throws SQLException, ClassNotFoundException {
         User user = userdao.checkUser(username, password);
         if(user != null){
             if(user.isGameMaster()){
-                GameMasterView.show();
+                GameMasterView.show(user);
             }else{
                 PlayerView.gameStart();
             }
