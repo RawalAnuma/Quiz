@@ -44,4 +44,8 @@ public class Question {
         }
         return false;
     }
+
+    public int[] getOptions() {
+        return options;
+    }
 }
