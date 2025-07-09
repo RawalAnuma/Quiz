@@ -3,13 +3,12 @@ package view;
 import controller.QuestionController;
 import model.Question;
 
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuizView {
-    public static void showQuiz(){
+    /**public static void showQuiz(){
         QuestionController questionController;
         try {
             questionController = new QuestionController();
@@ -38,5 +37,5 @@ public class QuizView {
             }
             i++;
         }
-    }
+    }**/
 }

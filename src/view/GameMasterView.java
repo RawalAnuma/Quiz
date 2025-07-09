@@ -1,5 +1,6 @@
 package view;
 
+import controller.QuestionController;
 import model.User;
 
 import java.util.Scanner;
@@ -9,14 +10,31 @@ public class GameMasterView {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the Game Master View!");
         System.out.println("1. Create a new question");
-        System.out.println("2. View existing questions");
-        System.out.println("3. Delete a question");
+        System.out.println("2. Update an existing question");
+        System.out.println("3. View Questions");
+        System.out.println("4. Test existing questions");
+        System.out.println("5. Log out");
         System.out.println("Enter your choice: ");
-        int choice = scanner.nextInt();
+        int choice = Integer.parseInt(scanner.nextLine());
+        if(choice >0) {
+            if (choice == 1) {
 
-        if(choice == 2){
-            QuizView.showQuiz();
+            } else if (choice == 2) {
+                QuestionController.listQuestions();
+            } else if (choice == 3) {
+                System.out.println("Viewing all questions...");
+
+            } else if (choice == 4) {
+                System.out.println("Testing existing questions...");
+                 QuestionController.startQuiz();
+
+            } else if (choice == 5) {
+                System.out.println("Logging out...");
+            } else {
+                System.out.println("Invalid choice");
+            }
+        }else{
+            System.out.println("Please enter choice(1-5)");
         }
-
     }
 }

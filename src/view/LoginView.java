@@ -14,17 +14,15 @@ public class LoginView {
         System.out.println("Enter password: ");
         String password = scan.nextLine();
         try {
-            if(userController.logIn(username, password)){
-                System.out.println("Login successful!");
-            } else {
-                System.out.println("Login failed. Please try again.");
+            if(!userController.logIn(username, password)){
+                System.out.println("Invalid username or password. Please try again.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        GameMenu.showMenu();
+        //GameMenu.showMenu();
 
     }
 }
