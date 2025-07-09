@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class GameMasterView {
     public static void show(User user) {
         Scanner scanner = new Scanner(System.in);
+        QuestionController questionController = new QuestionController();
         System.out.println("Welcome to the Game Master View!");
         System.out.println("1. Create a new question");
         System.out.println("2. Update an existing question");
@@ -18,15 +19,16 @@ public class GameMasterView {
         int choice = Integer.parseInt(scanner.nextLine());
         if(choice >0) {
             if (choice == 1) {
-
+                questionController.createQuestion();
             } else if (choice == 2) {
-                QuestionController.listQuestions();
+                questionController.updateQuestion();
+
             } else if (choice == 3) {
                 System.out.println("Viewing all questions...");
-
+                questionController.listQuestions();
             } else if (choice == 4) {
                 System.out.println("Testing existing questions...");
-                 QuestionController.startQuiz();
+                 questionController.startQuiz();
 
             } else if (choice == 5) {
                 System.out.println("Logging out...");

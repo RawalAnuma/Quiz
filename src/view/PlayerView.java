@@ -18,7 +18,7 @@ public class PlayerView {
 
        if(option >0){
            if(option == 1) {
-
+            questionController.startQuiz();
            } else if(option == 2) {
                try {
                    System.out.println("Viewing scoreboard...");

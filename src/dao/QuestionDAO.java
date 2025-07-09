@@ -57,4 +57,25 @@ public class QuestionDAO {
         }
     }
 
+    public boolean updateQuestion(int questionId, Question question) {
+        boolean isUpdated = false;
+        try {
+            String query = "UPDATE questions SET title = ?, option1 = ?, option2 = ?, option3 = ?, option4 = ?, correctOption = ? WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, question.getTitle());
+            ps.setInt(2, question.getOptions()[0]);
+            ps.setInt(3, question.getOptions()[1]);
+            ps.setInt(4, question.getOptions()[2]);
+            ps.setInt(5, question.getOptions()[3]);
+            ps.setInt(6, question.getCorrect_index());
+            ps.setInt(7, questionId);
+            int row = ps.executeUpdate();
+            if (row > 0) {
+                isUpdated = true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return isUpdated;
+    }
 }
