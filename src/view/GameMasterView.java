@@ -14,7 +14,8 @@ public class GameMasterView {
         System.out.println("2. Update an existing question");
         System.out.println("3. View Questions");
         System.out.println("4. Test existing questions");
-        System.out.println("5. Log out");
+        System.out.println("5. Delete a question");
+        System.out.println("6. Log out");
         System.out.println("Enter your choice: ");
         int choice = Integer.parseInt(scanner.nextLine());
         if(choice >0) {
@@ -31,8 +32,11 @@ public class GameMasterView {
                  questionController.startQuiz();
 
             } else if (choice == 5) {
+                questionController.deleteQuestion();
+            }else if(choice == 6){
                 System.out.println("Logging out...");
-            } else {
+                return;
+            }else {
                 System.out.println("Invalid choice");
             }
         }else{
