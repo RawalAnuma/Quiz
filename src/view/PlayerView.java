@@ -1,12 +1,13 @@
 package view;
 
 import controller.QuestionController;
+import model.User;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class PlayerView {
-   public static void gameStart() {
+   public static void gameStart(User user) {
        Scanner input = new Scanner(System.in);
        QuestionController questionController = new QuestionController();
        int option = 0;
@@ -18,7 +19,9 @@ public class PlayerView {
 
        if(option >0){
            if(option == 1) {
-            questionController.startQuiz();
+            if(questionController.startQuiz(user)){
+                System.out.println("Thank you for playing! Your score has been recorded.");
+            }
            } else if(option == 2) {
                try {
                    System.out.println("Viewing scoreboard...");

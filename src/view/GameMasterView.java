@@ -29,7 +29,7 @@ public class GameMasterView {
                 questionController.listQuestions();
             } else if (choice == 4) {
                 System.out.println("Testing existing questions...");
-                 questionController.startQuiz();
+                 questionController.startQuiz(user);
 
             } else if (choice == 5) {
                 questionController.deleteQuestion();

@@ -1,13 +1,13 @@
 package model;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class ScoreBoard {
     private int userId;
     private int score;
-    private LocalDate playedDate;
+    private Timestamp playedDate;
 
-    public ScoreBoard( int userId, int score, LocalDate playedDate) {
+    public ScoreBoard( int userId, int score) {
         this.userId = userId;
         this.score = score;
         this.playedDate = playedDate;
@@ -24,11 +24,8 @@ public class ScoreBoard {
     public void setScore(int score) {
         this.score = score;
     }
-    public LocalDate getPlayedDate() {
+    public Timestamp getPlayedDate() {
         return playedDate;
-    }
-    public void setPlayedDate(LocalDate playedDate) {
-        this.playedDate = playedDate;
     }
 
 }

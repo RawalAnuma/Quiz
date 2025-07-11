@@ -1,7 +1,8 @@
 package controller;
 
-import dao.QuestionDAO;
 import model.Question;
+import model.ScoreBoard;
+import model.User;
 import service.QuestionService;
 import view.AddQuestionView;
 import view.DeleteQuestionView;
@@ -24,10 +25,13 @@ public class QuestionController {
         }
     }
 
-    public void startQuiz() {
+    public boolean startQuiz(User user) {
+        boolean isGameEnded = false;
+        ScoreController scoreController = new ScoreController();
         Scanner scanner = new Scanner(System.in);
         ArrayList<Question> quizList = questionService.getAllQuestions();
         int i = 1;
+        int score = 0;
         for (Question question : quizList) {
             System.out.println("Question " + i + ": " + question.getTitle() + "\n");
             System.out.println("1. " + question.getOptions()[0]);
@@ -39,11 +43,15 @@ public class QuestionController {
             int userAnswer = scanner.nextInt();
             if (userAnswer == question.getCorrect_index()) {
                 System.out.println("Correct!");
+                score++;
             } else {
                 System.out.println("Wrong! The correct answer is option " + question.getCorrect_index());
             }
             i++;
         }
+        ScoreBoard scoreBoard = new ScoreBoard(user.getUserId(),score);
+        isGameEnded = scoreController.keepScore(scoreBoard);
+        return isGameEnded;
     }
 
 
