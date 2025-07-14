@@ -10,7 +10,6 @@ public class ScoreBoard {
     public ScoreBoard( int userId, int score) {
         this.userId = userId;
         this.score = score;
-        this.playedDate = playedDate;
     }
     public int getUserId() {
         return userId;
@@ -26,6 +25,9 @@ public class ScoreBoard {
     }
     public Timestamp getPlayedDate() {
         return playedDate;
+    }
+    public void setPlayedDate(Timestamp playedDate) {
+        this.playedDate = playedDate;
     }
 
 }

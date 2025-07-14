@@ -16,6 +16,7 @@ public class LoginView {
         try {
             if(!userController.logIn(username, password)){
                 System.out.println("Invalid username or password. Please try again.");
+                return;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

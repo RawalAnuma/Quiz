@@ -1,10 +1,11 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import model.ScoreBoard;
 
-import static javax.swing.text.html.HTML.Tag.SELECT;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ScoreDAO {
     private Connection conn;
@@ -19,7 +20,7 @@ public class ScoreDAO {
     }
 
     public boolean insertScore(int userId, int score) {
-        String query = "INSERT INTO scoreboard (userid, score) VALUES (?, ?)";
+        String query = "INSERT INTO scoreboard (userid, score, playedDate) VALUES (?, ?, NOW())";
         try {
             if (conn != null) {
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -28,13 +29,35 @@ public class ScoreDAO {
                 return ps.executeUpdate() > 0;
             }
 
-        } catch (Exception e) {
+        } catch (Exception e){
             throw new RuntimeException(e);
         }
         return false;
     }
 
-    public void scores(){
-        String query = "SELECT user.username, max(scoreboard.score)as totalscore, scoreboard.playedDate FROM `scoreboard` JOIN user ON user.userId = scoreboard.userId GROUP by user.username order by totalscore DESC";
+    public List <ScoreBoard> getAllScores(){
+        List<ScoreBoard> scoreList = new ArrayList<>();
+        String query = "SELECT * FROM scoreboard";
+        try {
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int userId = rs.getInt("userid");
+                    int score = rs.getInt("score");
+                    Timestamp playedDate = rs.getTimestamp("playedDate");
+                    ScoreBoard scoreBoard = new ScoreBoard(userId, score);
+                    scoreList.add(scoreBoard);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return scoreList;
     }
+
+
+
+
+
 }

@@ -32,26 +32,24 @@ public class UserDAO {
     }
 
     public User checkUser(String username, String password) {
-        User user = new User();
         String query = "Select userid, username, password, isgamemaster from user where username = ? and password = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1,username);
             ps.setString(2,password);
             ResultSet userSet = ps.executeQuery();
-            while(userSet.next()){
+            if(userSet.next()){
+                User user = new User();
                 user.setUserId(userSet.getInt("userid"));
                 user.setUsername(userSet.getString("username"));
                 user.setPassword(userSet.getString("password"));
                 user.setGameMaster(userSet.getBoolean("isgamemaster"));
-            }
-            if(user.getUsername()!= username || user.getPassword() != password){
-
+                return user;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return user;
+        return null;
     }
 
 }

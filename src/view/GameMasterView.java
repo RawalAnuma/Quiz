@@ -10,37 +10,45 @@ public class GameMasterView {
         Scanner scanner = new Scanner(System.in);
         QuestionController questionController = new QuestionController();
         System.out.println("Welcome to the Game Master View!");
-        System.out.println("1. Create a new question");
-        System.out.println("2. Update an existing question");
-        System.out.println("3. View Questions");
-        System.out.println("4. Test existing questions");
-        System.out.println("5. Delete a question");
-        System.out.println("6. Log out");
-        System.out.println("Enter your choice: ");
-        int choice = Integer.parseInt(scanner.nextLine());
-        if(choice >0) {
-            if (choice == 1) {
-                questionController.createQuestion();
-            } else if (choice == 2) {
-                questionController.updateQuestion();
 
-            } else if (choice == 3) {
-                System.out.println("Viewing all questions...");
-                questionController.listQuestions();
-            } else if (choice == 4) {
-                System.out.println("Testing existing questions...");
-                 questionController.startQuiz(user);
+        while(true) {
+            System.out.println("1. Create a new question");
+            System.out.println("2. Update an existing question");
+            System.out.println("3. View Questions");
+            System.out.println("4. Test existing questions");
+            System.out.println("5. Delete a question");
+            System.out.println("6. Log out");
+            System.out.println("Enter your choice: ");
 
-            } else if (choice == 5) {
-                questionController.deleteQuestion();
-            }else if(choice == 6){
-                System.out.println("Logging out...");
-                return;
-            }else {
-                System.out.println("Invalid choice");
+            try{
+            int choice = Integer.parseInt(scanner.nextLine());
+                switch(choice){
+                    case 1:
+                        questionController.createQuestion();
+                        break;
+                    case 2:
+                        questionController.updateQuestion();
+                        break;
+                    case 3:
+                        System.out.println("Viewing all questions...");
+                        questionController.listQuestions();
+                        break;
+                    case 4:
+                        System.out.println("Testing existing questions...");
+                        questionController.startQuiz(user);
+                        break;
+                    case 5:
+                        questionController.deleteQuestion();
+                        break;
+                    case 6:
+                        System.out.println("Logging out...");
+                        return;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
             }
-        }else{
-            System.out.println("Please enter choice(1-5)");
         }
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import dao.ScoreDAO;
 import model.ScoreBoard;
+import view.ScoreBoardView;
 
 public class ScoreController {
     public boolean keepScore(ScoreBoard scoreBoard) {
@@ -11,5 +12,8 @@ public class ScoreController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    public void showScoreBoard(){
+        ScoreBoardView.showScoreBoardView();
     }
 }
